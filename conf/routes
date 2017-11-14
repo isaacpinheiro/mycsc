@@ -12,5 +12,11 @@ POST    /api/user                   controllers.UserController.create
 PUT     /api/user                   controllers.UserController.update
 DELETE  /api/user/:id               controllers.UserController.delete(id: Long)
 
+GET     /api/commonuser             controllers.CommonUserController.listAll
+GET     /api/commonuser/:id         controllers.CommonUserController.listOne(id: Long)
+POST    /api/commonuser             controllers.CommonUserController.create
+PUT     /api/commonuser             controllers.CommonUserController.update
+DELETE  /api/commonuser/:id         controllers.CommonUserController.delete(id: Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
