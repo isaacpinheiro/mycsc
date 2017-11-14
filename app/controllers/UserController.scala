@@ -12,6 +12,7 @@ import anorm._
 import anorm.{ Macro, RowParser }
 
 import models.User
+import utils.MySQLDateFormat
 
 @Singleton
 class UserController @Inject()(cc: ControllerComponents, dbapi: DBApi) extends AbstractController(cc) {
@@ -51,9 +52,9 @@ class UserController @Inject()(cc: ControllerComponents, dbapi: DBApi) extends A
         "values('" +
         u.email + "', '" +
         u.password + "', " +
-        u.token + ", " +
-        u.createdAt + ", " +
-        u.updatedAt + ");").execute()
+        u.token + ", '" +
+        MySQLDateFormat.format(u.createdAt) + "', '" +
+        MySQLDateFormat.format(u.updatedAt) + "');").execute()
 
       Ok(Json.parse("{\"msg\": \"success\"}"))
 
@@ -81,8 +82,8 @@ class UserController @Inject()(cc: ControllerComponents, dbapi: DBApi) extends A
         "email = '" + u.email + "', " +
         "password = '" + u.password + "', " +
         "token = " + u.token + ", " +
-        "createdAt = '" + u.createdAt + "', " +
-        "updatedAt = '" + u.updatedAt + "' " +
+        "createdAt = '" + MySQLDateFormat.format(u.createdAt) + "', " +
+        "updatedAt = '" + MySQLDateFormat.format(u.updatedAt) + "' " +
         "where id = " + id + ";").execute()
 
       Ok(Json.parse("{\"msg\": \"success\"}"))
