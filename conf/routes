@@ -3,7 +3,6 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
-# An example controller showing a sample home page
 GET     /                           controllers.ViewController.index
 
 GET     /api/user                   controllers.UserController.listAll
@@ -17,6 +16,12 @@ GET     /api/commonuser/:id         controllers.CommonUserController.listOne(id:
 POST    /api/commonuser             controllers.CommonUserController.create
 PUT     /api/commonuser             controllers.CommonUserController.update
 DELETE  /api/commonuser/:id         controllers.CommonUserController.delete(id: Long)
+
+GET     /api/enterpriseuser         controllers.EnterpriseUserController.listAll
+GET     /api/enterpriseuser/:id     controllers.EnterpriseUserController.listOne(id: Long)
+POST    /api/enterpriseuser         controllers.EnterpriseUserController.create
+PUT     /api/enterpriseuser         controllers.EnterpriseUserController.update
+DELETE  /api/enterpriseuser/:id     controllers.EnterpriseUserController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
