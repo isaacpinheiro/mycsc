@@ -21,14 +21,14 @@ class UserController @Inject()(cc: ControllerComponents, dbapi: DBApi) extends A
   val parser: RowParser[User] = Macro.namedParser[User]
 
   def listAll = Action { implicit request: Request[AnyContent] =>
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
       val result: List[User] = SQL("select * from User;").as(parser.*)
       Ok(Json.toJson(result))
     }
   }
 
   def listOne(id: Long) = Action { implicit request: Request[AnyContent] =>
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
       val List(result): List[User] = SQL("select * from User where id = " + id + ";").as(parser.*)
       Ok(Json.toJson(result))
     }
@@ -36,7 +36,7 @@ class UserController @Inject()(cc: ControllerComponents, dbapi: DBApi) extends A
 
   def create = Action(parse.json) { implicit request: Request[JsValue] =>
 
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
 
       val obj = request.body
       val u = User(
@@ -64,7 +64,7 @@ class UserController @Inject()(cc: ControllerComponents, dbapi: DBApi) extends A
 
   def update = Action(parse.json) { implicit request: Request[JsValue] =>
 
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
 
       val obj = request.body
       val u = User(
@@ -93,7 +93,7 @@ class UserController @Inject()(cc: ControllerComponents, dbapi: DBApi) extends A
   }
 
   def delete(id: Long) = Action { implicit request: Request[AnyContent] =>
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
       SQL("delete from User where id = " + id + ";").execute()
       Ok(Json.parse("{\"msg\": \"success\"}"))
     }

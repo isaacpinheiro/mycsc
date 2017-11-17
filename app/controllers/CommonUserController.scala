@@ -21,14 +21,14 @@ class CommonUserController @Inject()(cc: ControllerComponents, dbapi: DBApi) ext
   val parser: RowParser[CommonUser] = Macro.namedParser[CommonUser]
 
   def listAll = Action { implicit request: Request[AnyContent] =>
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
       val result: List[CommonUser] = SQL("select * from CommonUser;").as(parser.*)
       Ok(Json.toJson(result))
     }
   }
 
   def listOne(id: Long) = Action { implicit request: Request[AnyContent] =>
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
       val List(result): List[CommonUser] = SQL("select * from CommonUser where id = " + id + ";").as(parser.*)
       Ok(Json.toJson(result))
     }
@@ -36,7 +36,7 @@ class CommonUserController @Inject()(cc: ControllerComponents, dbapi: DBApi) ext
 
   def create = Action(parse.json) { implicit request: Request[JsValue] =>
 
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
 
       val obj = request.body
       val c = CommonUser(
@@ -53,13 +53,13 @@ class CommonUserController @Inject()(cc: ControllerComponents, dbapi: DBApi) ext
         case None => "null"
       }
 
-      /*SQL("insert into CommonUser(name, img, createdAt, updatedAt, userId) " +
+      SQL("insert into CommonUser(name, img, createdAt, updatedAt, userId) " +
         "values('" +
         c.name + "', " +
         img + ", '" +
         MySQLDateFormat.format(c.createdAt) + "', '" +
         MySQLDateFormat.format(c.updatedAt) + "', " +
-        c.userId + ");").execute()*/
+        c.userId + ");").execute()
 
       Ok(Json.parse("{\"msg\": \"success\"}"))
 
@@ -69,7 +69,7 @@ class CommonUserController @Inject()(cc: ControllerComponents, dbapi: DBApi) ext
 
   def update = Action(parse.json) { implicit request: Request[JsValue] =>
 
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
 
       val obj = request.body
       val c = CommonUser(
@@ -88,13 +88,13 @@ class CommonUserController @Inject()(cc: ControllerComponents, dbapi: DBApi) ext
         case None => "null"
       }
 
-      /*SQL("update CommonUser set " +
+      SQL("update CommonUser set " +
         "name = '" + c.name + "', " +
         "img = " + img + ", " +
         "createdAt = '" + MySQLDateFormat.format(c.createdAt) + "', " +
         "updatedAt = '" + MySQLDateFormat.format(c.updatedAt) + "', " +
         "userId = " + c.userId + " " +
-        "where id = " + id + ";").execute()*/
+        "where id = " + id + ";").execute()
 
       Ok(Json.parse("{\"msg\": \"success\"}"))
 
@@ -103,7 +103,7 @@ class CommonUserController @Inject()(cc: ControllerComponents, dbapi: DBApi) ext
   }
 
   def delete(id: Long) = Action { implicit request: Request[AnyContent] =>
-    db.withConnection { implicit c =>
+    db.withConnection { implicit conn =>
       SQL("delete from CommonUser where id = " + id + ";").execute()
       Ok(Json.parse("{\"msg\": \"success\"}"))
     }
