@@ -5,7 +5,7 @@ import play.api.libs.json.Json
 
 case class Message(
   val id: Option[Long],
-  val typeMessage: String,
+  val messageType: String,
   val anonymous: Boolean,
   val content: String,
   val attachment: Option[String],

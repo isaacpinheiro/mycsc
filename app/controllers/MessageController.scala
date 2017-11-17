@@ -41,7 +41,7 @@ class MessageController @Inject()(cc: ControllerComponents, dbapi: DBApi) extend
       val obj = request.body
       val m = Message(
         None,
-        (obj \ "typeMessage").as[String],
+        (obj \ "messageType").as[String],
         (obj \ "anonymous").as[Boolean],
         (obj \ "content").as[String],
         (obj \ "attachment").asOpt[String],
@@ -67,9 +67,9 @@ class MessageController @Inject()(cc: ControllerComponents, dbapi: DBApi) extend
         case None => "null"
       }
 
-      SQL("insert into Message(typeMessage, anonymous, content, attachment, createdAt, updatedAt, commonUserId, enterpriseUserId, productId) " +
+      SQL("insert into Message(messageType, anonymous, content, attachment, createdAt, updatedAt, commonUserId, enterpriseUserId, productId) " +
         "values('" +
-        m.typeMessage + "', " +
+        m.messageType + "', " +
         m.anonymous + "', '" +
         m.content + "', " +
         attachment + ", '" +
@@ -92,7 +92,7 @@ class MessageController @Inject()(cc: ControllerComponents, dbapi: DBApi) extend
       val obj = request.body
       val m = Message(
         Some((obj \ "id").as[Long]),
-        (obj \ "typeMessage").as[String],
+        (obj \ "messageType").as[String],
         (obj \ "anonymous").as[Boolean],
         (obj \ "content").as[String],
         (obj \ "attachment").asOpt[String],
@@ -121,7 +121,7 @@ class MessageController @Inject()(cc: ControllerComponents, dbapi: DBApi) extend
       }
 
       SQL("update Message set " +
-        "typeMessage = '" + m.typeMessage + "', " +
+        "messageType = '" + m.messageType + "', " +
         "anonymous = " + m.anonymous + ", " +
         "content = '" + m.content + "', " +
         "attachment = " + attachment + ", " +
