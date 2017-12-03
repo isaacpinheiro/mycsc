@@ -1,0 +1,21 @@
+{
+  "name": "mycsc",
+  "authors": [
+    "Isaac Pinheiro <isaacpnhr@gmail.com>"
+  ],
+  "description": "Trabalho final para a disciplina Programação para Web.",
+  "main": "index.html",
+  "license": "none",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
