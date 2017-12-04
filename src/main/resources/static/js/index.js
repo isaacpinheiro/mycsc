@@ -29,8 +29,36 @@ $(document).ready(function() {
 
         } else {
 
-            $('#alertMsg').html('Sucesso');
-            $('#alertModal').modal();
+            var obj = {
+                email: email,
+                password: senha
+            };
+
+            $.ajax({
+                url: '/api/user/login',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(obj),
+                success: function(data) {
+
+                    var msg = JSON.parse(data).msg;
+
+                    if (msg !== 'success') {
+
+                        $('#alertMsg').html(msg);
+                        $('#alertModal').modal();
+
+                    } else {
+
+                        $('#log_in_email').val('');
+                        $('#log_in_senha').val('');
+
+                        window.location.href = '/dashboard';
+
+                    }
+
+                }
+            });
 
         }
 

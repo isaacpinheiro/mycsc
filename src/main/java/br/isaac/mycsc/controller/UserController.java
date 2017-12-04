@@ -61,4 +61,25 @@ public class UserController {
         return "{\"msg\": \"success\"}";
     }
 
+    @RequestMapping(value="/api/user/login", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody String login(@RequestBody User login) {
+
+        User obj = repository.findByEmail(login.getEmail());
+
+        if (obj == null) {
+
+            return "{\"msg\": \"Não foi possível acessar o sistema.\"}";
+
+        } else if (!MyHash.match(obj.getPassword(), login.getPassword(), obj.getToken())) {
+
+            return "{\"msg\": \"Usuário ou senha incorretos.\"}";
+
+        } else {
+
+            return "{\"msg\": \"success\"}";
+
+        }
+
+    }
+
 }
