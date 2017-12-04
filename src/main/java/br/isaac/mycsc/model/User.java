@@ -21,24 +21,24 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Long id;
+    private Long id;
 
     @Column(name = "email", nullable = false)
-    public String email;
+    private String email;
 
     @Column(name = "password", nullable = false)
-    public String password;
+    private String password;
 
     @Column(name = "token", nullable = false)
-    public Integer token;
+    private Integer token;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false)
-    public Date createdAt;
+    private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
-    public Date updatedAt;
+    private Date updatedAt;
 
     public User() {
 
