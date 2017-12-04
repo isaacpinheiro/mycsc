@@ -1,5 +1,7 @@
 package br.isaac.mycsc.controller;
 
+import java.util.Date;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import br.isaac.mycsc.repository.UserRepository;
 import br.isaac.mycsc.model.User;
+import br.isaac.mycsc.util.MyHash;
 
 @RestController
 public class UserController {
@@ -30,8 +33,25 @@ public class UserController {
 
     @RequestMapping(value="/api/user", method=RequestMethod.POST, consumes="application/json")
     public @ResponseBody String insert(@RequestBody User obj) {
+
+        Date now = new Date();
+
+        if (obj.getId() == null) {
+
+            obj.setCreatedAt(now);
+            obj.setUpdatedAt(now);
+            obj.setToken(MyHash.generateToken());
+            obj.setPassword(MyHash.generate(obj.getPassword(), obj.getToken()));
+
+        } else {
+
+            obj.setUpdatedAt(now);
+
+        }
+
         repository.save(obj);
         return "{\"msg\": \"success\"}";
+
     }
 
     @RequestMapping(value="/api/user/{id}", method=RequestMethod.DELETE)
