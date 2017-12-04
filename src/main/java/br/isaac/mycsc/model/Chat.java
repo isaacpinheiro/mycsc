@@ -3,14 +3,41 @@ package br.isaac.mycsc.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "chat")
 public class Chat implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "content", nullable = false)
     private String content;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "sent_on", nullable = false)
     private Date sentOn;
+
+    @ManyToOne
+    @JoinColumn(name = "from_user_id", referencedColumnName = "id")
     private User fromUser;
+
+    @ManyToOne
+    @JoinColumn(name = "to_user_id", referencedColumnName = "id")
     private User toUser;
 
     public Chat() {

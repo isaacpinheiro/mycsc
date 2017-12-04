@@ -3,19 +3,58 @@ package br.isaac.mycsc.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "message")
 public class Message implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "message_type", nullable = false)
     private String messageType;
+
+    @Column(name = "anonymous", nullable = false)
     private Boolean anonymous;
+
+    @Column(name = "content", nullable = false)
     private String content;
+
+    @Column(name = "attachment", nullable = false)
     private String attachment;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false)
     private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "common_user_id", referencedColumnName = "id")
     private CommonUser commonUser;
+
+    @ManyToOne
+    @JoinColumn(name = "enterprise_user_id", referencedColumnName = "id")
     private EnterpriseUser enterpriseUser;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     public Message() {
