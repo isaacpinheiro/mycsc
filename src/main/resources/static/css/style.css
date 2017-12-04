@@ -50,7 +50,7 @@
     }
 
     #about {
-        background: #eeeeee;
+        background: #00aadd;
         width: 100%;
         height: 550px;
     }
@@ -62,7 +62,7 @@
     }
 
     #signup {
-        background: #eeeeee;
+        background: #00aadd;
         width: 100%;
         height: 550px;
     }
@@ -74,12 +74,12 @@
     }
 
     .empresa-btn {
-        color: #df4a4a;
+        color: #df2a2a;
     }
 
     .empresa-btn:hover {
         text-decoration: none;
-        color: #df2a2a;
+        color: #df1919;
     }
 
     .login-btn, .signup-btn {

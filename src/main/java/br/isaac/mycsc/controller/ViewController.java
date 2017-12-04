@@ -11,4 +11,19 @@ public class ViewController {
         return "index";
     }
 
+    @RequestMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
+    @RequestMapping("/perfil")
+    public String perfil() {
+        return "perfil";
+    }
+
+    @RequestMapping("/cadastrarempresa")
+    public String cadastrarEmpresa() {
+        return "/cadastrarempresa";
+    }
+
 }
