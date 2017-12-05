@@ -1,1 +1,9 @@
 @charset "utf-8";
+
+@media all {
+
+    body {
+        background: #00aadd;
+    }
+
+}

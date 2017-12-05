@@ -2,9 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>MyCSC - Enterprise Perfil</title>
+        <title>MyCSC Empresas - Perfil</title>
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/eperfil.css" />
     </head>
     <body>
-        <h1>Enterprise Perfil</h1>
+        <nav class="navbar navbar-inverse" style="border-radius: 0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/edashboard">
+                        MyCSC 
+                        <span style="color: #df1a1a;">Empresas</span>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav" style="float: right;">
+                    <li><a href="/edashboard">Home</a></li>
+                    <li><a href="#">Produtos</a></li>
+                    <li><a href="/eperfil">Perfil</a></li>
+                    <li><a href="#" id="sair_btn">Sair</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/eperfil.js"></script>
     </body>
 </html>
