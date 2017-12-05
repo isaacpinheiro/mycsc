@@ -55,8 +55,45 @@ $(document).ready(function() {
 
         } else {
 
-            $('#alertMsg').html('Success');
-            $('#alertModal').modal();
+            var obj = {
+                tradeName: nome,
+                regCode: cnpj,
+                country: pais,
+                user: {
+                    email: email,
+                    password: senha
+                }
+            };
+
+            $.ajax({
+                url: '/api/enterpriseuser',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(obj),
+                success: function(data) {
+
+                    var msg = JSON.parse(data).msg;
+
+                    if (msg !== 'success') {
+
+                        $('#alertMsg').html(msg);
+                        $('#alertModal').modal();
+
+                    } else {
+
+                        $('#sign_up_email').val('');
+                        $('#sign_up_senha').val('');
+                        $('#sign_up_conf_senha').val('');
+                        $('#sign_up_nome').val('');
+                        $('#sign_up_cnpj').val('');
+                        $('#sign_up_pais').val('');
+
+                        window.location.href = '/dashboard';
+
+                    }
+
+                }
+            });
 
         }
 
