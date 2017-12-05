@@ -68,17 +68,11 @@ $(document).ready(function() {
 
         var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
-        var nome = $('#sign_up_nome').val();
         var email = $('#sign_up_email').val();
         var senha = $('#sign_up_senha').val();
         var confSenha = $('#sign_up_conf_senha').val();
 
-        if (nome === '' || nome === null) {
-
-            $('#alertMsg').html('Por favor, informe o seu Nome Completo.');
-            $('#alertModal').modal();
-
-        } else if (email === '' || email === null) {
+        if (email === '' || email === null) {
 
             $('#alertMsg').html('Por favor, informe o seu E-Mail.');
             $('#alertModal').modal();
@@ -105,8 +99,36 @@ $(document).ready(function() {
 
         } else {
 
-            $('#alertMsg').html('Sucesso');
-            $('#alertModal').modal();
+            var obj = {
+                email: email,
+                password: senha
+            };
+
+            $.ajax({
+                url: '/api/user',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(obj),
+                success: function(data) {
+
+                    var msg = JSON.parse(data).msg;
+
+                    if (msg !== 'success') {
+
+                        $('#alertMsg').html(msg);
+                        $('#alertModal').modal();
+
+                    } else {
+
+                        $('#log_in_email').val('');
+                        $('#log_in_senha').val('');
+
+                        window.location.href = '/dashboard';
+
+                    }
+
+                }
+            });
 
         }
 
