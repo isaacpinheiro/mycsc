@@ -9,9 +9,6 @@ $(document).ready(function() {
         var email = $('#log_in_email').val();
         var senha = $('#log_in_senha').val();
 
-        $('#alertMsg').html();
-        $('#alertModal').modal();
-
         if (email === '' || email === null) {
 
             $('#alertMsg').html('Por favor, informe o seu E-Mail.');
