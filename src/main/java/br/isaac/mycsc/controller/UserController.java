@@ -38,6 +38,12 @@ public class UserController {
 
         if (obj.getId() == null) {
 
+            User user = repository.findByEmail(obj.getEmail());
+
+            if (user != null) {
+                return "{\"msg\": \"Já existe um usuário cadastrado com esse E-Mail.\"}";
+            }
+
             obj.setCreatedAt(now);
             obj.setUpdatedAt(now);
             obj.setToken(MyHash.generateToken());
