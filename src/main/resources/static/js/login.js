@@ -26,13 +26,13 @@ $(document).ready(function() {
 
         } else {
 
-            /*var obj = {
+            var obj = {
                 email: email,
                 password: senha
             };
 
             $.ajax({
-                url: '/api/user/login',
+                url: '/api/enterpriseuser/login',
                 contentType: 'application/json',
                 type: 'POST',
                 data: JSON.stringify(obj),
@@ -55,7 +55,7 @@ $(document).ready(function() {
                     }
 
                 }
-            });*/
+            });
 
         }
 

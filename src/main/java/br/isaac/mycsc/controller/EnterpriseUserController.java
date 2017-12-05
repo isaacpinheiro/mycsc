@@ -79,4 +79,27 @@ public class EnterpriseUserController {
         return "{\"msg\": \"success\"}";
     }
 
+    @RequestMapping(value="/api/enterpriseuser/login", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody String login(@RequestBody User login) {
+
+        User u = userRepository.findByEmail(login.getEmail());
+
+        if (u == null) {
+            return "{\"msg\": \"Não foi possível acessar o sistema.\"}";
+        }
+
+        EnterpriseUser e = repository.findByUser(u);
+
+        if (e == null) {
+            return "{\"msg\": \"Não existe nenhuma empresa cadastrada com esse E-Mail.\"}";
+        }
+
+        if (!MyHash.match(u.getPassword(), login.getPassword(), u.getToken())) {
+            return "{\"msg\": \"Usuário ou senha incorretos.\"}";
+        }
+
+        return "{\"msg\": \"success\"}";
+
+    }
+
 }
