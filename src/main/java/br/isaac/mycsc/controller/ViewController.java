@@ -26,4 +26,19 @@ public class ViewController {
         return "/cadastrarempresa";
     }
 
+    @RequestMapping("/login")
+    public String login() {
+        return "/login";
+    }
+
+    @RequestMapping("/edashboard")
+    public String enterpriseDashboard() {
+        return "edashboard";
+    }
+
+    @RequestMapping("/eperfil")
+    public String enterprisePerfil() {
+        return "eperfil";
+    }
+
 }

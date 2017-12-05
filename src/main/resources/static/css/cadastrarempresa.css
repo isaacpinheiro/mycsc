@@ -21,6 +21,28 @@
         text-decoration: none;
     }
 
+    .header-menu {
+        list-style: none;
+        float: right;
+        margin-top: -37px;
+    }
+
+    .header-menu > li {
+        float: left;
+        margin-right: 40px;
+    }
+
+    .header-menu > li > a {
+        font-family: "Verdana";
+        font-size: 20px;
+        color: #df1a1a;
+    }
+
+    .header-menu > li > a:hover {
+        text-decoration: none;
+        color: #df4a4a;
+    }
+
     #signup {
         background: #ffffff;
         width: 100%;
