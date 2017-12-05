@@ -117,8 +117,9 @@ $(document).ready(function() {
 
                     } else {
 
-                        $('#log_in_email').val('');
-                        $('#log_in_senha').val('');
+                        $('#sign_up_email').val('');
+                        $('#sign_up_senha').val('');
+                        $('#sign_up_conf_senha').val('');
 
                         window.location.href = '/dashboard';
 
