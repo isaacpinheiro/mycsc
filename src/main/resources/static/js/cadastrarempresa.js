@@ -88,7 +88,7 @@ $(document).ready(function() {
                         $('#sign_up_cnpj').val('');
                         $('#sign_up_pais').val('');
 
-                        window.location.href = '/dashboard';
+                        window.location.href = '/edashboard';
 
                     }
 
