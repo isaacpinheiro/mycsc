@@ -48,13 +48,28 @@
                         <a href="/adicionarproduto" class="adicionar-btn">Adicionar Produto</a>
 
                         <div class="table-responsive" style="margin: 20px 0px 30px 0px;">
-                            <table class="table" id="table_content">
-                                <tr>
-                                    <th>Marca</th>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                </tr>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Marca</th>
+                                        <th>Nome</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table_content"></tbody>
                             </table>
+                            <center>
+                                <span style="color: #555555; font-weight: bold;">
+                                    <span id="current_page"></span> / <span id="no_of_pages"></span>
+                                </span>
+                            </center>
+                            <center>
+                                <ul class="pagination" id="pages" style="cursor: pointer">
+                                    <!--<li><a id="previous">Previous</a></li>
+                                    <li id="pages"></li>
+                                    <li><a id="next">Next</a></li>-->
+                                </ul>
+                            </center>
                         </div>
 
                     </div>
