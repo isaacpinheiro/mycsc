@@ -62,4 +62,12 @@ public class ProductController {
         return "{\"msg\": \"success\"}";
     }
 
+    @RequestMapping(value="/api/product/email/{email}", method=RequestMethod.GET, produces="application/json")
+    public @ResponseBody Iterable<Product> listByEnterpriseUser(@PathVariable("email") String email) {
+        User u = userRepository.findByEmail(email);
+        EnterpriseUser e = enterpriseUserRepository.findByUser(u);
+        Iterable<Product> obj = repository.findByEnterpriseUser(e);
+        return obj;
+    }
+
 }
