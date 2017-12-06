@@ -12,6 +12,8 @@ $(document).ready(function() {
             window.location.href = '/edashboard';
         }
 
+        $('#email_label').html(localStorage.email);
+
     }
 
     $('#sair_btn').click(function() {
