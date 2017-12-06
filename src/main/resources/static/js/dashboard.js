@@ -14,6 +14,19 @@ $(document).ready(function() {
 
         $('#email_label').html(localStorage.email);
 
+        $.ajax({
+            url: '/api/commonuser/email/' + localStorage.email + '.',
+            contentType: 'application/json',
+            type: 'GET',
+            success: function(data) {
+
+                if (data === '') {
+                    window.location.href = '/perfil';
+                }
+
+            }
+        });
+
     }
 
     $('#sair_btn').click(function() {
