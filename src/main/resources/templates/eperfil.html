@@ -7,6 +7,41 @@
         <link rel="stylesheet" type="text/css" href="css/eperfil.css" />
     </head>
     <body>
+
+        <div class="modal fade" id="alertModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Erro!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="alertMsg"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="successModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Success</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="successMsg"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius: 0px;">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -46,19 +81,19 @@
                         <form style="margin-top: 150px;">
                             <div class="input-group" style="max-width: 350px;">
                                 <span class="input-group-addon">E-Mail</span>
-                                <input type="text" class="form-control" id="sign_up_email" disabled />
+                                <input type="text" class="form-control" id="perfil_email" disabled />
                             </div><br />
                             <div class="input-group" style="max-width: 550px;">
                                 <span class="input-group-addon">Nome da Empresa</span>
-                                <input type="text" class="form-control" id="sign_up_nome" />
+                                <input type="text" class="form-control" id="perfil_nome" />
                             </div><br />
                             <div class="input-group" style="max-width: 550px;">
                                 <span class="input-group-addon">CNPJ</span>
-                                <input type="text" class="form-control" id="sign_up_cnpj" />
+                                <input type="text" class="form-control" id="perfil_cnpj" />
                             </div><br />
                             <div class="input-group" style="max-width: 550px;">
                                 <span class="input-group-addon">País</span>
-                                <input type="text" class="form-control" id="sign_up_pais" />
+                                <input type="text" class="form-control" id="perfil_pais" />
                             </div><br />
                             <button type="button" class="btn btn-default salvar-btn" id="salvar_btn" onclick="this.blur();">Salvar</button>
                         </form>

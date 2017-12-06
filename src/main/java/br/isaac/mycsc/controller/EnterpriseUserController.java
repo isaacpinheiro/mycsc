@@ -102,4 +102,11 @@ public class EnterpriseUserController {
 
     }
 
+    @RequestMapping(value="/api/enterpriseuser/email/{email}", method=RequestMethod.GET, produces="application/json")
+    public @ResponseBody EnterpriseUser listOneByEmail(@PathVariable("email") String email) {
+        User u = userRepository.findByEmail(email);
+        EnterpriseUser obj = repository.findByUser(u);
+        return obj;
+    }
+
 }
