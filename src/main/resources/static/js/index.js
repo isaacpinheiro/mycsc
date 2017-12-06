@@ -2,6 +2,16 @@
 
 $(document).ready(function() {
 
+    if (localStorage.email !== null && localStorage.email !== undefined) {
+
+        if (localStorage.role === 'common') {
+            window.location.href = '/dashboard';
+        } else if (localStorage.role === 'enterprise') {
+            window.location.href = '/edashboard';
+        }
+
+    }
+
     $('#log_in_btn').click(function() {
 
         var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -49,6 +59,9 @@ $(document).ready(function() {
 
                         $('#log_in_email').val('');
                         $('#log_in_senha').val('');
+
+                        localStorage.email = obj.email;
+                        localStorage.role = 'common';
 
                         window.location.href = '/dashboard';
 
@@ -120,6 +133,9 @@ $(document).ready(function() {
                         $('#sign_up_email').val('');
                         $('#sign_up_senha').val('');
                         $('#sign_up_conf_senha').val('');
+
+                        localStorage.email = obj.email;
+                        localStorage.role = 'common';
 
                         window.location.href = '/dashboard';
 
