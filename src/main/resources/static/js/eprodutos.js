@@ -48,7 +48,8 @@ $(document).ready(function() {
 
                 for (var i=0; i<paginationData.length; i++) {
 
-                    var str = '<tr><td>' + paginationData[i].brand + '</td>' +
+                    var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
+                                '<td>' + paginationData[i].brand + '</td>' +
                                 '<td>' + paginationData[i].name + '</td>' +
                                 '<td>' + paginationData[i].description + '</td></tr>';
 
@@ -79,7 +80,8 @@ $(document).ready(function() {
 
             for (var i=0; i<paginationData.length; i++) {
 
-                var str = '<tr><td>' + paginationData[i].brand + '</td>' +
+                var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
+                            '<td>' + paginationData[i].brand + '</td>' +
                             '<td>' + paginationData[i].name + '</td>' +
                             '<td>' + paginationData[i].description + '</td></tr>';
 
@@ -103,7 +105,8 @@ $(document).ready(function() {
 
             for (var i=0; i<paginationData.length; i++) {
 
-                var str = '<tr><td>' + paginationData[i].brand + '</td>' +
+                var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
+                            '<td>' + paginationData[i].brand + '</td>' +
                             '<td>' + paginationData[i].name + '</td>' +
                             '<td>' + paginationData[i].description + '</td></tr>';
 
@@ -125,14 +128,19 @@ $(document).ready(function() {
 
         for (var i=0; i<paginationData.length; i++) {
 
-            var str = '<tr><td>' + paginationData[i].brand + '</td>' +
-                        '<td>' + paginationData[i].name + '</td>' +
-                        '<td>' + paginationData[i].description + '</td></tr>';
+            var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
+                            '<td>' + paginationData[i].brand + '</td>' +
+                            '<td>' + paginationData[i].name + '</td>' +
+                            '<td>' + paginationData[i].description + '</td></tr>';
 
             $('#table_content').append(str);
 
         }
 
+    });
+
+    $('#table_content').on('click', '.product_id', function() {
+        alert($(this).html());
     });
 
 });
