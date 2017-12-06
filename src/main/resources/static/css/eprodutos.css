@@ -6,4 +6,13 @@
         background: #00aadd;
     }
 
+    .adicionar-btn {
+        color: #df1a1a;
+    }
+
+    .adicionar-btn:hover {
+        color: #df5a5a;
+        text-decoration: none;
+    }
+
 }
