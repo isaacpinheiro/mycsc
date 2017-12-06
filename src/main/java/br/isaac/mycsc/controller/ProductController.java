@@ -45,11 +45,19 @@ public class ProductController {
 
         Date now = new Date();
 
-        User u = userRepository.findByEmail(obj.getEnterpriseUser().getUser().getEmail());
-        EnterpriseUser e = enterpriseUserRepository.findByUser(u);
-        obj.setEnterpriseUser(e);
-        obj.setCreatedAt(now);
-        obj.setUpdatedAt(now);
+        if (obj.getId() == null) {
+
+            User u = userRepository.findByEmail(obj.getEnterpriseUser().getUser().getEmail());
+            EnterpriseUser e = enterpriseUserRepository.findByUser(u);
+            obj.setEnterpriseUser(e);
+            obj.setCreatedAt(now);
+            obj.setUpdatedAt(now);
+
+        } else {
+
+            obj.setUpdatedAt(now);
+
+        }
 
         repository.save(obj);
         return "{\"msg\": \"success\"}";

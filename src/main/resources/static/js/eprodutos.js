@@ -140,7 +140,8 @@ $(document).ready(function() {
     });
 
     $('#table_content').on('click', '.product_id', function() {
-        alert($(this).html());
+        localStorage.alterarProdutoId = parseInt($(this).html());
+        window.location.href = '/alterarproduto';
     });
 
 });

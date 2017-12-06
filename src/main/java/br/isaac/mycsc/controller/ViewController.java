@@ -51,4 +51,9 @@ public class ViewController {
         return "adicionarproduto";
     }
 
+    @RequestMapping("/alterarproduto")
+    public String alterarProduto() {
+        return "alterarproduto";
+    }
+
 }
