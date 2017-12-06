@@ -41,4 +41,14 @@ public class ViewController {
         return "eperfil";
     }
 
+    @RequestMapping("/eprodutos")
+    public String enterpriseProdutos() {
+        return "eprodutos";
+    }
+
+    @RequestMapping("/adicionarproduto")
+    public String adicionarProduto() {
+        return "adicionarproduto";
+    }
+
 }
