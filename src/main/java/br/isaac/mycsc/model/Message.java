@@ -34,7 +34,7 @@ public class Message implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "attachment", nullable = false)
+    @Column(name = "attachment")
     private String attachment;
 
     @Temporal(TemporalType.TIMESTAMP)

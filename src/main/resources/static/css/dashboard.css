@@ -6,4 +6,15 @@
         background: #00aadd;
     }
 
+    .enviar-btn {
+        background: #df1a1a;
+        color: #ffffff;
+        border: none;
+    }
+
+    .enviar-btn:hover {
+        background: #df2a2a;
+        color: #ffffff;
+    }
+
 }
