@@ -6,13 +6,13 @@
         background: #00aadd;
     }
 
-    .enviar-btn {
+    .buscar-btn {
         background: #df1a1a;
         color: #ffffff;
         border: none;
     }
 
-    .enviar-btn:hover {
+    .buscar-btn:hover {
         background: #df2a2a;
         color: #ffffff;
     }
