@@ -17,6 +17,8 @@ import br.isaac.mycsc.model.Product;
 import br.isaac.mycsc.model.User;
 import br.isaac.mycsc.model.EnterpriseUser;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @RestController
 public class ProductController {
 
@@ -28,6 +30,8 @@ public class ProductController {
 
     @Autowired
     private EnterpriseUserRepository enterpriseUserRepository;
+
+    private static ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping(value="/api/product/{id}", method=RequestMethod.GET, produces="application/json")
     public @ResponseBody Product listOne(@PathVariable("id") String id) {
@@ -56,6 +60,15 @@ public class ProductController {
         } else {
 
             obj.setUpdatedAt(now);
+
+            try {
+
+                String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+                System.out.println(json);
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
         }
 
