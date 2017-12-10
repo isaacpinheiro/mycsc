@@ -17,4 +17,13 @@
         color: #ffffff;
     }
 
+    #table_content_empresa > tr > td > a, #table_content_produto > tr > td > a {
+        color: #df1a1a;
+    }
+
+    #table_content_empresa > tr > td > a:hover, #table_content_produto > tr > td > a:hover {
+        color: #df5a5a;
+        text-decoration: none;
+    }
+
 }

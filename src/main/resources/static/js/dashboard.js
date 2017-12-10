@@ -1,5 +1,9 @@
 'use strict';
 
+function enviarMensagemEmpresa(id) {
+    alert(id);
+}
+
 $(document).ready(function() {
 
     var enterpriseUser = null;
@@ -89,9 +93,9 @@ $(document).ready(function() {
 
                     for (var i=0; i<paginationDataEmpresa.length; i++) {
 
-                        var str = '<tr><td><a href="#" class="enterpriseuser_id">' + paginationDataEmpresa[i].id + '</a></td>' +
+                        var str = '<tr><td>' + paginationDataEmpresa[i].country + '</td>' +
                                     '<td>' + paginationDataEmpresa[i].tradeName + '</td>' +
-                                    '<td>' + paginationDataEmpresa[i].country + '</td></tr>';
+                                    '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemEmpresa(' + paginationDataEmpresa[i].id + ')">Enviar Mensagem</a></td></tr>';
 
                         $('#table_content_empresa').append(str);
 
@@ -151,9 +155,9 @@ $(document).ready(function() {
 
             for (var i=0; i<paginationDataEmpresa.length; i++) {
 
-                var str = '<tr><td><a href="#" class="enterpriseuser_id">' + paginationDataEmpresa[i].id + '</a></td>' +
+                var str = '<tr><td>' + paginationDataEmpresa[i].country + '</td>' +
                             '<td>' + paginationDataEmpresa[i].tradeName + '</td>' +
-                            '<td>' + paginationDataEmpresa[i].country + '</td></tr>';
+                            '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemEmpresa(' + paginationDataEmpresa[i].id + ')">Enviar Mensagem</a></td></tr>';
 
                 $('#table_content_empresa').append(str);
 
@@ -175,9 +179,9 @@ $(document).ready(function() {
 
             for (var i=0; i<paginationDataEmpresa.length; i++) {
 
-                var str = '<tr><td><a href="#" class="enterpriseuser_id">' + paginationDataEmpresa[i].id + '</a></td>' +
+                var str = '<tr><td>' + paginationDataEmpresa[i].country + '</td>' +
                             '<td>' + paginationDataEmpresa[i].tradeName + '</td>' +
-                            '<td>' + paginationDataEmpresa[i].country + '</td></tr>';
+                            '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemEmpresa(' + paginationDataEmpresa[i].id + ')">Enviar Mensagem</a></td></tr>';
 
                 $('#table_content_empresa').append(str);
 
@@ -197,9 +201,9 @@ $(document).ready(function() {
 
         for (var i=0; i<paginationDataEmpresa.length; i++) {
 
-            var str = '<tr><td><a href="#" class="enterpriseuser_id">' + paginationDataEmpresa[i].id + '</a></td>' +
-                            '<td>' + paginationDataEmpresa[i].tradeName + '</td>' +
-                            '<td>' + paginationDataEmpresa[i].country + '</td></tr>';
+            var str = '<tr><td>' + paginationDataEmpresa[i].country + '</td>' +
+                        '<td>' + paginationDataEmpresa[i].tradeName + '</td>' +
+                        '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemEmpresa(' + paginationDataEmpresa[i].id + ')">Enviar Mensagem</a></td></tr>';
 
             $('#table_content_empresa').append(str);
 
