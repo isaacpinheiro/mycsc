@@ -109,4 +109,10 @@ public class EnterpriseUserController {
         return obj;
     }
 
+    @RequestMapping(value="/api/enterpriseuser/search", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody Iterable<EnterpriseUser> listByTradeNameLike(@RequestBody EnterpriseUser obj) {
+        Iterable<EnterpriseUser> enterpriseUsers = repository.findByTradeNameLike(obj.getTradeName());
+        return enterpriseUsers;
+    }
+
 }

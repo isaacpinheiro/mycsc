@@ -17,8 +17,6 @@ import br.isaac.mycsc.model.Product;
 import br.isaac.mycsc.model.User;
 import br.isaac.mycsc.model.EnterpriseUser;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @RestController
 public class ProductController {
 
@@ -30,8 +28,6 @@ public class ProductController {
 
     @Autowired
     private EnterpriseUserRepository enterpriseUserRepository;
-
-    private static ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping(value="/api/product/{id}", method=RequestMethod.GET, produces="application/json")
     public @ResponseBody Product listOne(@PathVariable("id") String id) {
@@ -61,15 +57,6 @@ public class ProductController {
 
             obj.setUpdatedAt(now);
 
-            try {
-
-                String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
-                System.out.println(json);
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-
         }
 
         repository.save(obj);
@@ -89,6 +76,12 @@ public class ProductController {
         EnterpriseUser e = enterpriseUserRepository.findByUser(u);
         Iterable<Product> obj = repository.findByEnterpriseUser(e);
         return obj;
+    }
+
+    @RequestMapping(value="/api/product/search", method=RequestMethod.POST, consumes="application/json")
+    public @ResponseBody Iterable<Product> listByNameLike(@RequestBody Product obj) {
+        Iterable<Product> products = repository.findByNameLike(obj.getName());
+        return products;
     }
 
 }
