@@ -4,6 +4,10 @@ function enviarMensagemEmpresa(id) {
     alert(id);
 }
 
+function enviarMensagemProduto(id) {
+    alert(id);
+}
+
 $(document).ready(function() {
 
     var enterpriseUser = null;
@@ -113,6 +117,47 @@ $(document).ready(function() {
                 name: busca
             };
 
+            $.ajax({
+                url: '/api/product/search',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(obj),
+                success: function(data) {
+
+                    product = data.reverse();
+                    noOfPagesProduto = Math.ceil(product.length / numPerPageProduto);
+                    paginationDataProduto = product.slice((currentPageProduto - 1) * numPerPageProduto, currentPageProduto * numPerPageProduto);
+
+                    $('#current_page_produto').html(currentPageProduto);
+                    $('#no_of_pages_produto').html(noOfPagesProduto);
+
+                    $('#pages_produto').append('<li><a id="previous_produto">Previous</a></li>');
+
+                    for (var i=1; i<=noOfPagesProduto; i++) {
+
+                        var str = '<li><a class="set_page_produto">' + i + '</a></li>';
+                        $('#pages_produto').append(str);
+
+                    }
+
+                    $('#pages_produto').append('<li><a id="next_produto">Next</a></li>');
+
+                    $('#table_content_produto').html('');
+
+                    for (var i=0; i<paginationDataProduto.length; i++) {
+
+                        var str = '<tr><td>' + paginationDataProduto[i].brand + '</td>' +
+                                    '<td>' + paginationDataProduto[i].name + '</td>' +
+                                    '<td>' + paginationDataProduto[i].enterpriseUser.tradeName + '</td>' +
+                                    '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemProduto(' + paginationDataProduto[i].id + ')">Enviar Mensagem</a></td></tr>';
+
+                        $('#table_content_produto').append(str);
+
+                    }
+
+                }
+            });
+
             $('#busca_div').css("display", "none");
             $('#busca_produto_div').css("display", "block");
 
@@ -121,6 +166,9 @@ $(document).ready(function() {
     });
 
     $("#limpar_busca_empresa_btn").click(function() {
+
+        $('#buscar_por').val('Empresa');
+        $('#busca').val('');
 
         $('#busca_empresa_div').css("display", "none");
         $('#busca_div').css("display", "block");
@@ -139,8 +187,24 @@ $(document).ready(function() {
     });
 
     $("#limpar_busca_produto_btn").click(function() {
+
+        $('#buscar_por').val('Empresa');
+        $('#busca').val('');
+
         $('#busca_produto_div').css("display", "none");
         $('#busca_div').css("display", "block");
+
+        product = null;
+        numPerPageProduto = 10;
+        noOfPagesProduto;
+        currentPageProduto = 1;
+        paginationDataProduto = [];
+
+        $('#current_page_produto').html("");
+        $('#no_of_pages_produto').html("");
+        $('#pages_produto').html("");
+        $('#table_content_produto').html("");
+
     });
 
     $('#pages_empresa').on('click', '#previous_empresa', function() {
@@ -206,6 +270,77 @@ $(document).ready(function() {
                         '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemEmpresa(' + paginationDataEmpresa[i].id + ')">Enviar Mensagem</a></td></tr>';
 
             $('#table_content_empresa').append(str);
+
+        }
+
+    });
+
+    $('#pages_produto').on('click', '#previous_produto', function() {
+
+        if (currentPageProduto > 1) {
+
+            currentPageProduto--;
+            paginationDataProduto = product.slice((currentPageProduto - 1) * numPerPageProduto, currentPageProduto * numPerPageProduto);
+
+            $('#current_page_produto').html(currentPageProduto);
+            $('#table_content_produto').html('');
+
+            for (var i=0; i<paginationDataProduto.length; i++) {
+
+                var str = '<tr><td>' + paginationDataProduto[i].brand + '</td>' +
+                            '<td>' + paginationDataProduto[i].name + '</td>' +
+                            '<td>' + paginationDataProduto[i].enterpriseUser.tradeName + '</td>' +
+                            '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemProduto(' + paginationDataProduto[i].id + ')">Enviar Mensagem</a></td></tr>';
+
+                $('#table_content_produto').append(str);
+
+            }
+
+        }
+
+    });
+
+    $('#pages_produto').on('click', '#next_produto', function() {
+
+        if (currentPageProduto < noOfPagesProduto) {
+
+            currentPageProduto++;
+            paginationDataProduto = product.slice((currentPageProduto - 1) * numPerPageProduto, currentPageProduto * numPerPageProduto);
+
+            $('#current_page_produto').html(currentPageProduto);
+            $('#table_content_produto').html('');
+
+            for (var i=0; i<paginationDataProduto.length; i++) {
+
+                var str = '<tr><td>' + paginationDataProduto[i].brand + '</td>' +
+                            '<td>' + paginationDataProduto[i].name + '</td>' +
+                            '<td>' + paginationDataProduto[i].enterpriseUser.tradeName + '</td>' +
+                            '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemProduto(' + paginationDataProduto[i].id + ')">Enviar Mensagem</a></td></tr>';
+
+                $('#table_content_produto').append(str);
+
+            }
+
+        }
+
+    });
+
+    $('#pages_produto').on('click', '.set_page_produto', function() {
+
+        currentPageProduto = parseInt($(this).html());
+        paginationDataProduto = product.slice((currentPageProduto - 1) * numPerPageProduto, currentPageProduto * numPerPageProduto);
+
+        $('#current_page_produto').html(currentPageProduto);
+        $('#table_content_produto').html('');
+
+        for (var i=0; i<paginationDataProduto.length; i++) {
+
+            var str = '<tr><td>' + paginationDataProduto[i].brand + '</td>' +
+                        '<td>' + paginationDataProduto[i].name + '</td>' +
+                        '<td>' + paginationDataProduto[i].enterpriseUser.tradeName + '</td>' +
+                        '<td><a href="#" class="enviar-bnt" onclick="enviarMensagemProduto(' + paginationDataProduto[i].id + ')">Enviar Mensagem</a></td></tr>';
+
+            $('#table_content_produto').append(str);
 
         }
 
