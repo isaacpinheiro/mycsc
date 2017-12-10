@@ -1,5 +1,10 @@
 'use strict';
 
+function editar(id) {
+    localStorage.alterarProdutoId = id;
+    window.location.href = '/alterarproduto';
+}
+
 $(document).ready(function() {
 
     var product = null;
@@ -48,10 +53,10 @@ $(document).ready(function() {
 
                 for (var i=0; i<paginationData.length; i++) {
 
-                    var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
-                                '<td>' + paginationData[i].brand + '</td>' +
+                    var str = '<tr><td>' + paginationData[i].brand + '</td>' +
                                 '<td>' + paginationData[i].name + '</td>' +
-                                '<td>' + paginationData[i].description + '</td></tr>';
+                                '<td>' + paginationData[i].description + '</td>' +
+                                '<td><a href="#" onclick="editar(' + paginationData[i].id + ')">Editar</a></td></tr>';
 
                     $('#table_content').append(str);
 
@@ -80,10 +85,10 @@ $(document).ready(function() {
 
             for (var i=0; i<paginationData.length; i++) {
 
-                var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
-                            '<td>' + paginationData[i].brand + '</td>' +
+                var str = '<tr><td>' + paginationData[i].brand + '</td>' +
                             '<td>' + paginationData[i].name + '</td>' +
-                            '<td>' + paginationData[i].description + '</td></tr>';
+                            '<td>' + paginationData[i].description + '</td>' +
+                            '<td><a href="#" onclick="editar(' + paginationData[i].id + ')">Editar</a></td></tr>';
 
                 $('#table_content').append(str);
 
@@ -105,10 +110,10 @@ $(document).ready(function() {
 
             for (var i=0; i<paginationData.length; i++) {
 
-                var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
-                            '<td>' + paginationData[i].brand + '</td>' +
+                var str = '<tr><td>' + paginationData[i].brand + '</td>' +
                             '<td>' + paginationData[i].name + '</td>' +
-                            '<td>' + paginationData[i].description + '</td></tr>';
+                            '<td>' + paginationData[i].description + '</td>' +
+                            '<td><a href="#" onclick="editar(' + paginationData[i].id + ')">Editar</a></td></tr>';
 
                 $('#table_content').append(str);
 
@@ -128,20 +133,15 @@ $(document).ready(function() {
 
         for (var i=0; i<paginationData.length; i++) {
 
-            var str = '<tr><td><a href="#" class="product_id">' + paginationData[i].id + '</a></td>' +
-                            '<td>' + paginationData[i].brand + '</td>' +
-                            '<td>' + paginationData[i].name + '</td>' +
-                            '<td>' + paginationData[i].description + '</td></tr>';
+            var str = '<tr><td>' + paginationData[i].brand + '</td>' +
+                        '<td>' + paginationData[i].name + '</td>' +
+                        '<td>' + paginationData[i].description + '</td>' +
+                        '<td><a href="#" onclick="editar(' + paginationData[i].id + ')">Editar</a></td></tr>';
 
             $('#table_content').append(str);
 
         }
 
-    });
-
-    $('#table_content').on('click', '.product_id', function() {
-        localStorage.alterarProdutoId = parseInt($(this).html());
-        window.location.href = '/alterarproduto';
     });
 
 });
