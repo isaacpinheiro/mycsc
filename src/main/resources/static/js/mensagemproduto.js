@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+    var commonUser = null;
+
     if (localStorage.email === null || localStorage.email === undefined) {
 
         window.location.href = '/';
@@ -22,6 +24,8 @@ $(document).ready(function() {
 
                 if (data === '') {
                     window.location.href = '/perfil';
+                } else {
+                    commonUser = data;
                 }
 
             }

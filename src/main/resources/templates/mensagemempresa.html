@@ -72,7 +72,31 @@
 
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
-                        <h1>Mensage Empresa</h1>
+                        <h1>Mensagem</h1>
+
+                        <form style="margin-top: 30px;">
+                            <div class="input-group" style="max-width: 450px;">
+                                <span class="input-group-addon">Empresa</span>
+                                <input type="text" class="form-control" id="mensagem_empresa" disabled />
+                            </div><br />
+                            <div class="input-group" style="max-width: 250px;">
+                                <span class="input-group-addon">Tipo de Mensagem:</span>
+                                <select class="form-control" id="mensagem_tipo">
+                                    <option>Elogio</option>
+                                    <option>Crítica</option>
+                                    <option>Dúvida</option>
+                                    <option>Outro</option>
+                                </select>
+                            </div><br />
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="mensagem_anonimo"> Anônimo</label>
+                            </div><br />
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem:</label>
+                                <textarea class="form-control" rows="5" id="mensagem_conteudo"></textarea>
+                            </div><br />
+                            <button type="button" class="btn btn-default enviar-btn" id="enviar_btn" onclick="this.blur();">Enviar</button>
+                        </form>
 
                     </div>
 
