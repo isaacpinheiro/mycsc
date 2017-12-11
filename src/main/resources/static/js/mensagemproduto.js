@@ -33,4 +33,10 @@ $(document).ready(function() {
 
     }
 
+    $('#sair_btn').click(function() {
+        localStorage.removeItem('email');
+        localStorage.removeItem('role');
+        window.location.href = '/';
+    });
+
 });

@@ -117,7 +117,7 @@ public class Message implements Serializable {
         return this.updatedAt;
     }
 
-    public void setCommonUser(CommonUser enterpriseUser) {
+    public void setCommonUser(CommonUser commonUser) {
         this.commonUser = commonUser;
     }
 

@@ -2,8 +2,8 @@
 
 $(document).ready(function() {
 
-    var commonUser = null;
-    var enterpriseUser = null;
+    var commonUser;
+    var enterpriseUser;
 
     if (localStorage.email === null || localStorage.email === undefined) {
 
@@ -32,6 +32,76 @@ $(document).ready(function() {
             }
         });
 
+        $.ajax({
+            url: '/api/enterpriseuser/' + localStorage.mensagemEmpresaId,
+            contentType: 'application/json',
+            type: 'GET',
+            success: function(data) {
+                enterpriseUser = data;
+                $('#mensagem_empresa').val(enterpriseUser.tradeName);
+            }
+        });
+
     }
+
+    $('#sair_btn').click(function() {
+        localStorage.removeItem('email');
+        localStorage.removeItem('role');
+        window.location.href = '/';
+    });
+
+    $('#enviar_btn').click(function() {
+
+        var tipoMensagem = $('#mensagem_tipo').val();
+        var anonimo = $('#mensagem_anonimo').is(':checked');
+        var conteudo = $('#mensagem_conteudo').val();
+
+        if (conteudo === '' || conteudo === null) {
+
+            $('#alertMsg').html('Por favor, informe o conteúdo da mensagem.');
+            $('#alertModal').modal();
+
+        } else {
+
+            var message = {
+                messageType: tipoMensagem,
+                anonymous: anonimo,
+                content: conteudo,
+                commonUser: commonUser,
+                enterpriseUser: enterpriseUser
+            };
+
+            $.ajax({
+                url: '/api/message',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(message),
+                success: function(data) {
+
+                    var msg = JSON.parse(data).msg;
+
+                    if (msg !== 'success') {
+
+                        $('#alertMsg').html(msg);
+                        $('#alertModal').modal();
+
+                    } else {
+
+                        $('#successMsg').html('Mensagem enviada com sucesso com sucesso.');
+                        $('#successModal').modal();
+
+                    }
+
+                }
+            });
+
+        }
+
+    });
+
+    $('#close_btn').click(function() {
+        localStorage.removeItem('mensagemEmpresaId');
+        window.location.href = '/dashboard';
+    });
 
 });
