@@ -6,4 +6,13 @@
         background: #00aadd;
     }
 
+    #table_content > tr > td > a {
+        color: #df1a1a;
+    }
+
+    #table_content > tr > td > a:hover {
+        color: #df5a5a;
+        text-decoration: none;
+    }
+
 }

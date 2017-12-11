@@ -11,14 +11,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import br.isaac.mycsc.repository.MessageRepository;
+import br.isaac.mycsc.repository.UserRepository;
+import br.isaac.mycsc.repository.EnterpriseUserRepository;
 import br.isaac.mycsc.model.Message;
-
+import br.isaac.mycsc.model.User;
+import br.isaac.mycsc.model.EnterpriseUser;
 
 @RestController
 public class MessageController {
 
     @Autowired
     private MessageRepository repository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private EnterpriseUserRepository enterpriseUserRepository;
 
     @RequestMapping(value="/api/message/{id}", method=RequestMethod.GET, produces="application/json")
     public @ResponseBody Message listOne(@PathVariable("id") String id) {
@@ -48,6 +57,14 @@ public class MessageController {
         Message obj = repository.findOne(Long.parseLong(id));
         repository.delete(obj);
         return "{\"msg\": \"success\"}";
+    }
+
+    @RequestMapping(value="/api/message/email/{email}", method=RequestMethod.GET, produces="application/json")
+    public @ResponseBody Iterable<Message> listByEnterpriseUser(@PathVariable("email") String email) {
+        User u = userRepository.findByEmail(email);
+        EnterpriseUser e = enterpriseUserRepository.findByUser(u);
+        Iterable<Message> obj = repository.findByEnterpriseUser(e);
+        return obj;
     }
 
 }
