@@ -1,9 +1,8 @@
 'use strict';
 
 function visualizarMensagem(id) {
-    alert(id);
-    //localStorage.visualizarMensageId = id;
-    //window.location.href = '/visualizarmensagem';
+    localStorage.visualizarMensageId = id;
+    window.location.href = '/visualizarmensagem';
 }
 
 $(document).ready(function() {

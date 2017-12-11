@@ -66,4 +66,9 @@ public class ViewController {
         return "mensagemproduto";
     }
 
+    @RequestMapping("/visualizarmensagem")
+    public String visualizarMensagem() {
+        return "visualizarmensagem";
+    }
+
 }
