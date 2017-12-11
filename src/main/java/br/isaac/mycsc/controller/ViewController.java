@@ -56,4 +56,14 @@ public class ViewController {
         return "alterarproduto";
     }
 
+    @RequestMapping("/mensagemempresa")
+    public String mensagemEmpresa() {
+        return "mensagemempresa";
+    }
+
+    @RequestMapping("/mensagemproduto")
+    public String mensagemProduto() {
+        return "mensagemproduto";
+    }
+
 }

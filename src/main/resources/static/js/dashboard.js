@@ -1,11 +1,13 @@
 'use strict';
 
 function enviarMensagemEmpresa(id) {
-    alert(id);
+    localStorage.mensagemEmpresaId = id;
+    window.location.href = '/mensagemempresa';
 }
 
 function enviarMensagemProduto(id) {
-    alert(id);
+    localStorage.mensagemProdutoId = id;
+    window.location.href = '/mensagemproduto';
 }
 
 $(document).ready(function() {
